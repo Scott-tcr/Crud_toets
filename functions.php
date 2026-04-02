@@ -76,9 +76,9 @@ function getBrouwcodes(){
     $conn = connectDb();
 
     // Select data uit de opgegeven table methode prepare
-    $sql = "SELECT * FROM " . CRUD_TABLE . " WHERE bestemming = :bestemming";
+    $sql = "SELECT * FROM " . CRUD_TABLE . " WHERE idbestemming = :idbestemming";
     $query = $conn->prepare($sql);
-    $query->execute([':bestemming'=>$bestemmingen]);
+    $query->execute([':idbestemming'=>$bestemmingen]);
     $result = $query->fetch();
 
     return $result;
