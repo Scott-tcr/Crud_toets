@@ -9,19 +9,20 @@
 
         // test of update gelukt is
         if(updateRecord($_POST) == true){
-            echo "<script>alert('Bestemming is gewijzigd')</script>";
+            echo "<script>alert('Bestemming is niet gewijzigd')</script>";
         } else {
-            echo '<script>alert("Bestemming is niet gewijzigd")</script>';
+            echo '<script>alert("Bestemming is gewijzigd")</script>';
         }
     }
 
     // Test of id is meegegeven in de URL
-    if(isset($_GET['id'])){  
+    if(isset($_GET['id'])){
         // Haal alle info van de betreffende id $_GET['id']
         $id = $_GET['id'];
         $row = getRecord($id);
     
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,11 +30,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <title>Wijzig Fiets</title>
+  <title>Wijzig toets</title>
 </head>
 <body>
-  <h2>Wijzig Fiets</h2>
+  <h2>Wijzig Bestemming</h2>
   <form method="post">
+    
+    <input type="hidden" id="idbestemming" name="idbestemming" required value="<?php echo $row['idbestemming']; ?>"><br>
     <label for="plaats">Plaats:</label>
     <input type="text" id="plaats" name="plaats" required value="<?php echo $row['plaats']; ?>"><br>
 
@@ -43,21 +46,11 @@
     <label for="werelddeel">Werelddeel:</label>
     <input type="text" id="werelddeel" name="werelddeel" required value="<?php echo $row['werelddeel']; ?>"><br>
 
-    
+
     <?php
 ?>
 
-<label for="idbestemming">idbestemming:</label>
-<select name="idbestemming" required>
 
-    <?php foreach($idbestemming as $code): ?>
-        <option value="<?= $code['idbestemming']; ?>"
-            <?php if($code['idbestemming'] == $row['idbestemming']) echo "selected"; ?>>
-            
-            <?= $code['brouwcode']; ?>
-        
-        </option>
-    <?php endforeach; ?>
 
 </select><br>
 

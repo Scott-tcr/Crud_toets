@@ -23,12 +23,12 @@ include_once "config.php";
     }
 
  }
-function getBrouwcodes(){
+function getidbestemming(){
     $conn = connectDb();
 
     $sql = "SELECT bestemming FROM reizen"; 
     $query = $conn->prepare($sql);
-    $query->execute();
+
 
     return $query->fetchAll();
 }
@@ -49,7 +49,7 @@ function getBrouwcodes(){
 
     //print table
     printCrudTabel($result);
-    
+
  }
 
  // selecteer de data uit de opgeven table
@@ -134,12 +134,12 @@ $table .= "<td>
 function updateRecord($row){
     $conn = connectDb();
     $sql = "UPDATE " . CRUD_TABLE . "
-            SET biercode = :biercode, naam = :naam, soort = :soort, stijl = :stijl, alcohol = :alcohol, brouwcode = :brouwcode
-            WHERE brouwcode = :brouwcode";
+            SET idbestemming = :idbestemming, plaats = :plaats, land = :land, werelddeel = :werelddeel
+            WHERE idbestemming = :idbestemming";
 
     $stmt = $conn->prepare($sql);
     $stmt->execute([
-        ':id' => isset($row['idbestemming']) ? $row['idbestemming'] : '',
+        ':idbestemming' => isset($row['idbestemming']) ? $row['idbestemming'] : '',
         ':plaats'      => isset($row['plaats']) ? $row['plaats'] : '',
         ':land'     => isset($row['land']) ? $row['land'] : '',
         ':werelddeel'     => isset($row['werelddeel']) ? $row['werelddeel'] : ''
